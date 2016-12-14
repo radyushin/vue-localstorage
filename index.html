@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
+    <script src="./dist/index.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        new Vue({
+            el: '#app',
+            mounted: function() {
+                this.$localStorage.add('bob', 23);
+            }
+        });
+    </script>
+</body>
+</html>
