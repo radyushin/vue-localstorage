@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const babel = require('gulp-babel');
 const buble = require('gulp-buble');
 const rollup = require('gulp-rollup');
 
