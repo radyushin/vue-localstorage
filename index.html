@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
-    <script src="./dist/index.js"></script>
+    <script src="./dist/vue-localstorage.js"></script>
 </head>
 <body>
     <div id="app"></div>
@@ -12,10 +12,7 @@
         new Vue({
             el: '#app',
             mounted: function() {
-                this.$localStorage.add('bob', 23);
-                //this.$localStorage.add('john', 24, 2);
-                this.$localStorage.add('alan', 25);
-                console.log(this.$localStorage);
+                this.$localStorage.set('foo', boo);
             }
         });
     </script>

@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const buble = require('gulp-buble');
+const rename = require('gulp-rename');
 const rollup = require('gulp-rollup');
 
 gulp.task('js', () =>  {
@@ -11,6 +12,7 @@ gulp.task('js', () =>  {
             moduleName: 'VueLocalStorage'
         }))
         .pipe(buble())
+        .pipe(rename('vue-localstorage.js'))
         .pipe(gulp.dest('./dist'));
 });
 

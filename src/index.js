@@ -7,10 +7,11 @@ export default class VueLocalStorage {
         });
 
         let clear = () => {
+            if (this.length == 0) return;
             for (let i = 0; i < this.length; i++) {
                 let current = JSON.parse(this.storage.getItem(this.storage.key(i)));
-                if (current.expire > 0 && current.expire < new Date().getTime()) {
-                    this.remove(this.storage.key(i));
+                 if (current.expire > 0 && current.expire < new Date().getTime()) {
+                     this.remove(this.storage.key(i));
                 }
             }
         };
@@ -25,7 +26,7 @@ export default class VueLocalStorage {
         });
     }
 
-    add (name, value, expire = 0) {
+    set (name, value, expire = 0) {
         this.storage.setItem(
             name,
             JSON.stringify({value:value, expire:expire > 0 ? new Date().getTime() + expire : expire})
@@ -39,8 +40,8 @@ export default class VueLocalStorage {
     remove (name) {
         return this.storage.removeItem(name);
     }
-    key() {
-
+    key(index) {
+        return this.storage.key(index);
     }
 }
 
