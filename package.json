@@ -1,0 +1,37 @@
+{
+  "name": "vue-localstorage",
+  "version": "0.1.0",
+  "description": "The Vue plugin for work with LocalStorage from Vue context",
+  "author": "Radyushin & Co",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "local storage"
+  ],
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-preset-es2015": "^6.18.0",
+    "buble": "^0.15.1",
+    "coveralls": "^2.11.15",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-buble": "^0.8.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rollup": "^2.5.1",
+    "mock-browser": "^0.92.12",
+    "nyc": "^10.0.0",
+    "tap-nyan": "^1.1.0"
+  },
+  "scripts": {
+    "test": "nyc ava --tap | tap-nyan"
+  },
+  "ava": {
+    "files": [
+      "./tests/*.js"
+    ],
+    "verbose": true,
+    "require": [
+      "./tests/helpers/setup-browser-env.js"
+    ]
+  }
+}
