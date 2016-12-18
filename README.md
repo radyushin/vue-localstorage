@@ -35,3 +35,7 @@ This is looks like work with the Web Storage API.
         }
     });
 ```
+
+## Donation
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z3UX6R7EES5BC)
