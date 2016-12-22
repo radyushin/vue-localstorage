@@ -2,18 +2,31 @@
 import test from 'ava';
 import VueLocalStorage from '../dist/vue-localstorage';
 
+//we should use serial test because of a window object which is immutable
 test.beforeEach(t => {
+    window.localStorage.clear();
     t.context.VueLocalStorage = new VueLocalStorage();
 });
 
-test('VueLocalStorage can set item', t => {
+test.serial('VueLocalStorage can set item', t => {
     let storage = t.context.VueLocalStorage;
     storage.set('foo', 'boo');
 
     t.is(storage.get('foo'), 'boo');
 });
 
-//we should use serial test because of a window object which is immutable
+test.serial('VueLocalStorage does not touch the items of users', t => {
+    let storage = t.context.VueLocalStorage;
+    window.localStorage.setItem('foo', 'userValueBoo');
+   storage.set('foo', 'boo');
+
+   t.is(storage.get('foo'), 'boo');
+   t.is(window.localStorage.getItem('foo'), 'userValueBoo');
+
+});
+
+
+
 test.serial('VueLocalStorage can return correct length', t => {
     let storage = t.context.VueLocalStorage;
     storage.set('foo', 'boo');
@@ -36,14 +49,14 @@ test.serial('VueLocalStorage can recive different types sych as string, number, 
     t.deepEqual(storage.get('hoo'), [1,'foo']);
 });
 
-test('VueLocalStorage can return item', t => {
+test.serial('VueLocalStorage can return item', t => {
     let storage = t.context.VueLocalStorage;
     storage.set('foo', 'boo');
 
     t.is(storage.get('foo'), 'boo');
 });
 
-test('VueLocalStorage can remove item', t => {
+test.serial('VueLocalStorage can remove item', t => {
     let storage = t.context.VueLocalStorage;
     storage.set('foo', 'boo');
     storage.remove('foo', 'boo');
@@ -51,7 +64,7 @@ test('VueLocalStorage can remove item', t => {
     t.is(storage.get('foo'), null);
 });
 
-test('Item of VueLocalStorage may be expire', t => {
+test.serial('Item of VueLocalStorage may be expire', t => {
     return new Promise(resolve => {
         let storage = t.context.VueLocalStorage;
         storage.set('foo','boo', 0);
