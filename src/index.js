@@ -21,6 +21,7 @@ export default class VueLocalStorage {
     }
     install (Vue) {
         let _this = this;
+        Vue.localStorage = _this;
         Object.defineProperty(Vue.prototype, "$localStorage", {
             get() {
                 return _this;
