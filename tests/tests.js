@@ -1,6 +1,7 @@
 'use strict';
 import test from 'ava';
 import VueLocalStorage from '../dist/vue-localstorage';
+import Vue from '../node_modules/vue/dist/vue';
 
 //we should use serial test because of a window object which is immutable
 test.beforeEach(t => {
@@ -76,4 +77,9 @@ test.serial('Item of VueLocalStorage may be expire', t => {
         t.is(storage.get('foo'), 'boo');
         t.is(storage.get('boo'), null);
     });
+});
+
+test.serial('VueLocalStorage can be called from Vue instamce', t => {
+    Vue.use(t.context.VueLocalStorage);
+    t.is(Vue.localStorage instanceof VueLocalStorage, true);
 });
