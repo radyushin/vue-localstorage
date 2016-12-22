@@ -28,6 +28,7 @@ var VueLocalStorage = function VueLocalStorage () {
 };
 VueLocalStorage.prototype.install = function install (Vue) {
     var _this = this;
+    Vue.localStorage = _this;
     Object.defineProperty(Vue.prototype, "$localStorage", {
         get: function get() {
             return _this;

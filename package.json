@@ -20,7 +20,8 @@
     "gulp-rollup": "^2.5.1",
     "mock-browser": "^0.92.12",
     "nyc": "^10.0.0",
-    "tap-nyan": "^1.1.0"
+    "tap-nyan": "^1.1.0",
+    "vue": "^2.1.6"
   },
   "scripts": {
     "test": "nyc ava --tap | tap-nyan"
