@@ -1,9 +1,10 @@
 {
-  "name": "vue-localstorage",
-  "version": "0.1.0",
+  "name": "vue-local-storage",
+  "version": "0.1.2",
   "description": "The Vue plugin for work with LocalStorage from Vue context",
   "author": "Radyushin & Co",
   "license": "MIT",
+  "repository": "radyushin/vue-localstorage",
   "keywords": [
     "vue",
     "local storage"
