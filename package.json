@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "nyc ava --tap | tap-nyan",
-    "compile": "babel"
+    "compile": "babel src/ -d dist"
   },
   "ava": {
     "files": [
