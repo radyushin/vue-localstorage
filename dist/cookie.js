@@ -45,7 +45,11 @@ exports.default = {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
   },
 
-  setItem: function setItem(sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+  setItem: function setItem(sKey, sValue, vEnd) {
+    var sPath = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '/';
+    var sDomain = arguments[4];
+    var bSecure = arguments[5];
+
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false;
     }

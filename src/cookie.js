@@ -40,7 +40,7 @@ export default {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
   },
 
-  setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+  setItem: function (sKey, sValue, vEnd, sPath = '/', sDomain, bSecure) {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false;
     }

@@ -37,10 +37,14 @@ class VueLocalStorage {
   }
 
   set(name, value, expire = 0) {
-    this.storage.setItem(
-      'vuels__' + name,
-      JSON.stringify({ value: value, expire: expire > 0 ? new Date().getTime() + expire : expire })
-    );
+    const keyName = 'vuels__' + name;
+    const data = JSON.stringify({ value: value, expire: expire > 0 ? new Date().getTime() + expire : expire });
+
+    if (typeof this.storage.type !== 'undefined' && this.storage.type === 'cookie') {
+      this.storage.setItem(keyName, data, expire);
+    } else {
+      this.storage.setItem(keyName, data);
+    }
   }
 
   get(name) {
