@@ -1,10 +1,14 @@
 # vue-localstorage
 
-> The Vue plugin for work with LocalStorage from Vue context
+> The Vue plugin for work with LocalStorage from Vue context, with cookie fallback.
 
 ### Introduction
 
 `vue-localstorage` is wrapper for work with the Storage interface of the Web Storage API.
+
+If localStorage is not available, such as in Safari Incognito mode, then cookie will be used.
+
+Notice that max cookie size is around 4kb.
 
 ### Development Setup
 
@@ -13,7 +17,7 @@
 yarn install
 
 # build dist files
-gulp
+yarn compile
 
 # run tests
 yarn run test
