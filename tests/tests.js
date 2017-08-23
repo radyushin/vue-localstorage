@@ -6,7 +6,7 @@ import test from 'ava';
 //we should use serial test because of a window object which is immutable
 test.beforeEach(t => {
   window.localStorage.clear();
-  t.context.VueLocalStorage = new VueLocalStorage();
+  t.context.VueLocalStorage = VueLocalStorage;
 });
 
 test.serial('VueLocalStorage can set item', t => {
@@ -65,20 +65,21 @@ test.serial('VueLocalStorage can remove item', t => {
 });
 
 test.serial('Item of VueLocalStorage may be expire', t => {
-  return new Promise(resolve => {
     let storage = t.context.VueLocalStorage;
+
     storage.set('foo', 'boo', 0);
     storage.set('boo', 'foo', 1);
+
     setTimeout(() => {
-      resolve(new VueLocalStorage());
-    }, 100);
-  }).then(storage => {
-    t.is(storage.get('foo'), 'boo');
-    t.is(storage.get('boo'), null);
-  });
+      storage.clear();
+
+      t.is(storage.get('foo'), 'boo');
+      t.is(storage.get('boo'), null);
+    }, 2000);
 });
 
 test.serial('VueLocalStorage can be called from Vue instamce', t => {
   Vue.use(t.context.VueLocalStorage);
-  t.is(Vue.localStorage instanceof VueLocalStorage, true);
+  Vue.localStorage.set('foo', 'bar');
+  t.is(Vue.localStorage.get('foo'), 'bar');
 });

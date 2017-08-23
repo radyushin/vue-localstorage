@@ -14,38 +14,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var VueLocalStorage = function () {
   function VueLocalStorage() {
-    var _this = this;
-
     _classCallCheck(this, VueLocalStorage);
 
     this.storage = _storage2.default;
+    //
+    // Object.defineProperty(this, "length", {
+    //   get() {
+    //     return this.storage.length;
+    //   }
+    // });
 
-    Object.defineProperty(this, "length", {
-      get: function get() {
-        return this.storage.length;
-      }
-    });
-
-    var clear = function clear() {
-      if (_this.length === 0) {
-        return;
-      }
-
-      for (var i = 0; i < _this.length; i++) {
-        var key = _this.storage.key(i);
-
-        if (false === /vuels__/i.test(key)) {
-          continue;
-        }
-
-        var current = JSON.parse(_this.storage.getItem(key));
-
-        if (current.expire > 0 && current.expire < new Date().getTime()) {
-          _this.storage.removeItem(key);
-        }
-      }
-    };
-    clear();
+    this.clear();
   }
 
   _createClass(VueLocalStorage, [{
@@ -83,6 +62,37 @@ var VueLocalStorage = function () {
     key: 'key',
     value: function key(index) {
       return this.storage.key(index);
+    }
+
+    /**
+     * Removes expired items
+     */
+
+  }, {
+    key: 'clear',
+    value: function clear() {
+      if (this.length === 0) {
+        return;
+      }
+
+      for (var i = 0; i < this.length; i++) {
+        var key = this.storage.key(i);
+
+        if (false === /vuels__/i.test(key)) {
+          continue;
+        }
+
+        var current = JSON.parse(this.storage.getItem(key));
+
+        if (current.expire > 0 && current.expire < new Date().getTime()) {
+          this.storage.removeItem(key);
+        }
+      }
+    }
+  }, {
+    key: 'length',
+    get: function get() {
+      return this.storage.length;
     }
   }]);
 

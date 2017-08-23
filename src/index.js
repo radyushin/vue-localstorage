@@ -3,33 +3,7 @@ import storage from './storage';
 class VueLocalStorage {
   constructor() {
     this.storage = storage;
-
-    Object.defineProperty(this, "length", {
-      get() {
-        return this.storage.length;
-      }
-    });
-
-    let clear = () => {
-      if (this.length === 0) {
-        return;
-      }
-
-      for (let i = 0; i < this.length; i++) {
-        const key = this.storage.key(i);
-
-        if (false === /vuels__/i.test(key)) {
-          continue;
-        }
-
-        const current = JSON.parse(this.storage.getItem(key));
-
-        if (current.expire > 0 && current.expire < new Date().getTime()) {
-          this.storage.removeItem(key);
-        }
-      }
-    };
-    clear();
+    this.clear();
   }
 
   install(Vue) {
@@ -59,6 +33,33 @@ class VueLocalStorage {
 
   key(index) {
     return this.storage.key(index);
+  }
+
+  /**
+   * Removes expired items
+   */
+  clear() {
+    if (this.length === 0) {
+      return;
+    }
+
+    for (let i = 0; i < this.length; i++) {
+      const key = this.storage.key(i);
+
+      if (false === /vuels__/i.test(key)) {
+        continue;
+      }
+
+      const current = JSON.parse(this.storage.getItem(key));
+
+      if (current.expire > 0 && current.expire < new Date().getTime()) {
+        this.storage.removeItem(key);
+      }
+    }
+  };
+
+  get length() {
+    return this.storage.length;
   }
 }
 
