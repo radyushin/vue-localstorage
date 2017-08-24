@@ -11,21 +11,20 @@
   ],
   "devDependencies": {
     "ava": "^0.17.0",
-    "babel-preset-es2015": "^6.18.0",
-    "buble": "^0.15.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "coveralls": "^2.11.15",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-buble": "^0.8.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-rollup": "^2.5.1",
     "mock-browser": "^0.92.12",
     "nyc": "^10.0.0",
     "tap-nyan": "^1.1.0",
-    "vue": "^2.1.6"
+    "vue": "^2.1.6",
+    "webpack": "^3.5.5"
   },
   "scripts": {
-    "test": "nyc ava --tap | tap-nyan"
+    "test": "nyc ava --tap | tap-nyan",
+    "compile": "babel src/ -d dist"
   },
   "ava": {
     "files": [
