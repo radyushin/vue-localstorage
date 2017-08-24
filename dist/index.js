@@ -17,13 +17,6 @@ var VueLocalStorage = function () {
     _classCallCheck(this, VueLocalStorage);
 
     this.storage = _storage2.default;
-    //
-    // Object.defineProperty(this, "length", {
-    //   get() {
-    //     return this.storage.length;
-    //   }
-    // });
-
     this.clear();
   }
 
